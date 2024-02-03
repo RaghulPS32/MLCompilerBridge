@@ -56,6 +56,7 @@ private:
   MLBridge::Environment *env;
   std::map<std::string, Agent *> agents;
   void computeAction(Observation &obs);
+  void passAgentInfo(llvm::raw_ostream& OS,std::string agentName,int action);
   void *evaluateUntyped() override;
 };
 } // namespace MLBridge
