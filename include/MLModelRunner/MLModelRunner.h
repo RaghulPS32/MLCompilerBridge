@@ -111,7 +111,6 @@ public:
   BaseSerDes::Kind getSerDesKind() const { return SerDesType; }
 
   virtual void requestExit() = 0;
-  std::promise<void> *exit_requested;
 
   template <typename T, typename... Types>
   void passMetaInfo(llvm::raw_ostream &OS,std::pair<std::string, T> &var1,
