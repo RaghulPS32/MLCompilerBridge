@@ -54,6 +54,7 @@
 #ifndef C_LIBRARY
 #include "SerDes/protobufSerDes.h"
 #include "SerDes/tensorflowSerDes.h"
+#include <google/protobuf/text_format.h>
 #endif
 namespace MLBridge {
 /// MLModelRunner - The main interface for interacting with the ML models.
@@ -123,19 +124,30 @@ public:
   //void passMetaInfo() {}
 
   template <typename T> void dumpFeature(llvm::raw_ostream &OS,std::pair<std::string, T> &var1) {
-    OS<<"Dumping input"<<"\n";
+    OS<<"Dumping input 1"<<"\n";
     OS << var1.first << ": " << var1.second << "\n";
   }
 
   template <typename T>
   void dumpFeature(llvm::raw_ostream &OS,std::pair<std::string, std::vector<T>> &var1) {
-    OS<<"Dumping input"<<"\n";
+    OS<<"Dumping input 2"<<"\n";
     OS << var1.first << ": ";
     for (const auto &elem : var1.second) {
       OS << elem << " ";
     }
     OS << "\n";
   }
+
+  // void dumpFeature(llvm::raw_ostream &OS,std::pair<std::string, std::vector<Message *>> &var1) {
+  //   OS<<"Dumping input 3"<<"\n";
+  //   OS << var1.first << ": ";
+  //   std::string *message="";
+  //   for (const auto &elem : var1.second) {
+  //     TextFormat::PrintToString(*elem, message);
+  //     OS << message << " "; 
+  //   }
+  //   OS << "\n";
+  // }
   /// User-facing interface for setting the features to be sent to the model.
   /// The features are passed as a list of key-value pairs.
   /// The key is the name of the feature and the value is the value of the
