@@ -51,10 +51,10 @@ void ONNXModelRunner::computeAction(Observation &obs) {
     // current agent
     auto current_agent = this->agents[this->env->getNextAgent()];
     action = current_agent->computeAction(obs);
-    passAgentInfo( "input", this->env->getNextAgent(), action);
+    passAgentInfo("input", this->env->getNextAgent(), action);
     this->env->step(action);
     if (this->env->checkDone()) {
-      passAgentInfo( "output", this->env->getNextAgent(), action);
+      passAgentInfo("output", this->env->getNextAgent(), action);
       std::cout << "Done🎉\n";
       break;
     }
