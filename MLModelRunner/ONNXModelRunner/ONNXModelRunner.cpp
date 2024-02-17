@@ -53,6 +53,7 @@ void ONNXModelRunner::computeAction(Observation &obs) {
     action = current_agent->computeAction(obs);
     passAgentInfo("input", this->env->getNextAgent(), action);
     this->env->step(action);
+    
     if (this->env->checkDone()) {
       passAgentInfo("output", this->env->getNextAgent(), action);
       std::cout << "Done🎉\n";
